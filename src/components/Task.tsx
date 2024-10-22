@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react"
 import { dataType } from "../interfaces.ts"
 import { useTaskContext } from "../context/TaskContext.tsx"
+
 export default function Task({ id, text, checked }: dataType) {
-    const [check, setCheck] = useState<boolean>(checked)
     const { task, setTask } = useTaskContext()
+    let listType: string = "unChecked"
+    let lastList: string = "checked"
+    if (checked == true) {
+        listType = "checked"
+        lastList = "unChecked"
+    }
+    let currentList = task[listType]
+    let nextList = task[lastList]
+    const currentTask = currentList.find(t => t.id == id)
 
     function changeStatus() {
-        let listType: string = "unChecked"
-        let lastList: string = "checked"
-        if (checked == true) {
-            listType = "checked"
-            lastList = "unChecked"
-        }
-        let currentList = task[listType]
-        let nextList = task[lastList]
-        const currentTask = currentList.find(t => t.id == id)
         if (currentTask) {
             currentTask.checked = !currentTask.checked
             currentList.splice(currentList.indexOf(currentTask), 1)
@@ -24,21 +23,31 @@ export default function Task({ id, text, checked }: dataType) {
                 [lastList]: nextList
             })
         }
-       
-        setCheck(previous => !previous)
     }
-    useEffect(() => {
-        console.log("task") 
-    })
+    function removeTask() {
+        if (currentTask) {
+            currentList.splice(currentList.indexOf(currentTask), 1)
+            setTask({
+                [listType]: currentList,
+                [lastList]: nextList
+            })
+        }
+    }
+
     return (
         <li>
-            <span style={{ display: 'block' }} onClick={() => { changeStatus() }}>
-                {check == false ? <UnCheck /> : <Check />}
+            <span style={{ display: 'block' }} onClick={() => changeStatus()}>
+                {checked == false ? <UnCheck /> : <Check />}
             </span>
             <div>
-                <p style={check == true ? { textDecoration: "line-through" } : { textDecoration: "none" }}>{text}</p>
+                <p style={checked == true ? { textDecoration: "line-through" } : { textDecoration: "none" }}>
+                    {text}
+                </p>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+            <svg onClick={() => removeTask()}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 16 16" >
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
             </svg>
         </li>

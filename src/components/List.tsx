@@ -6,6 +6,7 @@ interface ListProps {
 }
 export default function List({ dataList}: ListProps) {
     if(!dataList) return
+
     return (
         <ul className="list">
             {
