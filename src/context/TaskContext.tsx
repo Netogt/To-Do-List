@@ -1,13 +1,9 @@
 import { createContext, useContext, ReactNode, useState } from "react";
-
+import { dataType } from "../interfaces";
 interface TaskContextProps {
     children: ReactNode
 }
-interface dataType{
-    id: number,
-    text: string,
-    checked: boolean
-}
+
 interface contextType{
     task: dataType[],
     setTask: (data: dataType[]) => void
@@ -23,7 +19,7 @@ export function TaskContext({ children }: TaskContextProps) {
         },
         {
             id: 2,
-            text: "tarefa",
+            text: "tarefa1",
             checked: true
         }
     ])

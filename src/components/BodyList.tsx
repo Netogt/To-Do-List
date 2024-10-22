@@ -1,13 +1,12 @@
-import { useTaskContext } from "../context/TaskContext"
 import List from "./List"
 
 export default function BodyList(){
    
     return(
         <main className="bodyList"> 
-            <List></List>
+            <List typeList="unChecked"></List>
             <hr />
-            <List></List>
+            <List typeList="checked"></List>
         </main>
     )
 }
