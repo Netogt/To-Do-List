@@ -5,7 +5,6 @@ import NewTask from './components/NewTask'
 import { TaskContext } from './context/TaskContext'
 
 function App() {
-
   return (
     <TaskContext>
       <div className='container'>

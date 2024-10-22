@@ -1,15 +1,37 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode, useState } from "react";
 
 interface TaskContextProps {
     children: ReactNode
 }
-
-const context = createContext("")
+interface dataType{
+    id: number,
+    text: string,
+    checked: boolean
+}
+interface contextType{
+    task: dataType[],
+    setTask: (data: dataType[]) => void
+}
+const context = createContext({} as contextType)
 
 export function TaskContext({ children }: TaskContextProps) {
-    
+    const [data, setData] = useState<Array<dataType>>([
+        {
+            id: 1,
+            text: "tarefa",
+            checked: false
+        },
+        {
+            id: 2,
+            text: "tarefa",
+            checked: true
+        }
+    ])
+    function setTask(data: dataType[]): void {
+        setData(data)
+    }   
     return (
-        <context.Provider value={""}>
+        <context.Provider value={{task: data, setTask}}>
             {children}
         </context.Provider>
     )
