@@ -1,7 +1,13 @@
+import BtnDarkMode from "./BtnDarkMode";
+
 export default function Header() {
     return (
         <header className="header">
-            <h1>To-Do</h1>
+            <div>
+                <h1>To-Do</h1>
+                <BtnDarkMode />
+            </div>
         </header>
+      
     )
 }

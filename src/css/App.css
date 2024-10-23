@@ -28,21 +28,115 @@
   justify-content: center;
   background-color: #242424;
 
-  h1 {
+  div {
+    border-bottom: 1px solid;
     width: min(90%, 750px);
-    font-size: 1.6rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 1.6rem;
     color: rgb(99, 108, 231);
+  }
+
+  button {
+
+    height: 25px;
+    width: 50px;
+    border: none;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4) inset;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: .3s;
+
+    &::after {
+      content: "";
+      height: 20px;
+      width: 20px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2.5px;
+      left: 2.5px;
+      box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4) inset;
+    }
+  }
+
+  svg {
+    visibility: hidden;
+    color: #fff;
+  }
+
+  .moonIcon {
+    height: 11px;
+  }
+
+  .sunIcon {
+    height: 14px;
+  }
+
+  .darkMode {
+    background-color: rgb(41, 68, 166);
+    background: linear-gradient(rgb(6, 0, 126) 0%, rgb(15, 15, 228) 46%, rgba(0, 114, 255, 1) 100%);
+
+    &::after {
+      animation: animationDarkMode .3s forwards;
+    }
+
+    .moonIcon {
+      visibility: visible;
+    }
+  }
+
+  .lightMode {
+
+    background-color: rgb(225, 195, 26);
+    background-image: linear-gradient(#4596FB 0%, #57F2CC 48%, #D4FFEC 100%);
+
+    &::after {
+      animation: animationLightMode .4s forwards;
+    }
+
+    .sunIcon {
+      visibility: visible;
+      color: rgb(255, 234, 0);
+    }
+  }
+}
+
+@keyframes animationDarkMode {
+  from {
+    left: 2.5px;
+  }
+
+  to {
+    left: 27.5px;
+  }
+}
+
+@keyframes animationLightMode {
+  from {
+    left: 27.5px;
+  }
+
+  to {
+    left: 2.5px;
   }
 }
 
 .bodyList {
-  
+
   .list {
     width: 100%;
     padding: 10px 0;
     list-style: none;
+
     li {
       width: 100%;
       height: 50px;
@@ -114,6 +208,7 @@
       border: none;
       color: white;
       border-bottom: 1px solid rgb(99, 108, 231);
+
       &:focus {
         outline: none;
       }
