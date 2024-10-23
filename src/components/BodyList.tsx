@@ -6,9 +6,9 @@ export default function BodyList(){
  
     return(
         <main className="bodyList"> 
-            <List dataList={task.unChecked} listType="unChecked"></List>
+            <List dataList={task.unChecked}></List>
             <hr />
-            <List dataList={task.checked} listType="checked"></List>
+            <List dataList={task.checked}></List>
         </main>
     )
 }

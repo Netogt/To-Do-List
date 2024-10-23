@@ -1,16 +1,6 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from "react";
-import { dataType } from "../interfaces";
+import { createContext, useContext, useState, useEffect } from "react";
+import { TaskContextProps, listTaskType, contextType } from "../interfaces";
 
-interface TaskContextProps {
-    children: ReactNode
-}
-interface listTaskType {
-    [key: string]: dataType[] 
-}
-interface contextType {
-    task: listTaskType,
-    setTask: (data: listTaskType) => void
-}
 const context = createContext({} as contextType)
 
 export function TaskContext({ children }: TaskContextProps) {

@@ -1,12 +1,9 @@
-import { dataType } from "../interfaces.ts"
 import Task from "./Task.tsx"
-interface ListProps {
-    dataList: dataType[]
-    listType: string
-}
+import { ListProps } from "../interfaces.ts"
+
 export default function List({ dataList}: ListProps) {
-    if(!dataList) return
-    
+
+    if(dataList.length == 0) return
     return (
         <ul className="list">
             {

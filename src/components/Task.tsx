@@ -3,14 +3,14 @@ import { useTaskContext } from "../context/TaskContext.tsx"
 
 export default function Task({ id, text, checked }: dataType) {
     const { task, setTask } = useTaskContext()
-    let listType: string = "unChecked"
-    let lastList: string = "checked"
+    let nameCurrentList: string = "unChecked"
+    let nameNextList: string = "checked"
     if (checked == true) {
-        listType = "checked"
-        lastList = "unChecked"
+        nameCurrentList = "checked"
+        nameNextList = "unChecked"
     }
-    let currentList = task[listType]
-    let nextList = task[lastList]
+    let currentList = task[nameCurrentList]
+    let nextList = task[nameNextList]
     const currentTask = currentList.find(t => t.id == id)
 
     function changeStatus() {
@@ -19,8 +19,8 @@ export default function Task({ id, text, checked }: dataType) {
             currentList.splice(currentList.indexOf(currentTask), 1)
             nextList.push(currentTask)
             setTask({
-                [listType]: currentList,
-                [lastList]: nextList
+                [nameCurrentList]: currentList,
+                [nameNextList]: nextList
             })
         }
     }
@@ -28,8 +28,8 @@ export default function Task({ id, text, checked }: dataType) {
         if (currentTask) {
             currentList.splice(currentList.indexOf(currentTask), 1)
             setTask({
-                [listType]: currentList,
-                [lastList]: nextList
+                [nameCurrentList]: currentList,
+                [nameNextList]: nextList
             })
         }
     }

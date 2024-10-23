@@ -1,9 +1,10 @@
 import { useTaskContext } from "../context/TaskContext"
 import { dataType } from "../interfaces"
 import { KeyboardEvent } from "react"
+
 export default function NewTask() {
     const { task, setTask } = useTaskContext()
-    if (!task) return
+    
     function addNewTask(event: KeyboardEvent<HTMLInputElement>) {
         if (event.key != "Enter") return
         const eTarget = event.target as HTMLInputElement
@@ -14,7 +15,6 @@ export default function NewTask() {
                 total = total.id > currentValue.id ? total : currentValue;
                 return total
             }).id
-
 
         setTask({
             unChecked: [...task.unChecked, {
