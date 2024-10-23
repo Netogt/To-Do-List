@@ -33,6 +33,7 @@ export function TaskContext({ children }: TaskContextProps) {
 
     function setTask(data: listTaskType): void {
         setData(data)
+        console.log(data)
     }
     return (
         <context.Provider value={{ task: data, setTask }}>

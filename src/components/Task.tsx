@@ -33,7 +33,6 @@ export default function Task({ id, text, checked }: dataType) {
             })
         }
     }
-
     return (
         <li>
             <span style={{ display: 'block' }} onClick={() => changeStatus()}>
