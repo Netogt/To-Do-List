@@ -13,7 +13,9 @@ export interface listTaskType {
 }
 export interface contextType {
     task: listTaskType,
-    setTask: (data: listTaskType) => void
+    darkMode: boolean,
+    setTask: (data: listTaskType) => void,
+    setDarkMode: (dark: boolean) => void
 }
 export interface ListProps {
     dataList: dataType[]

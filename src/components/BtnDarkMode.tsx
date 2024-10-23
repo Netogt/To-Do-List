@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useTaskContext } from "../context/TaskContext"
 
 export default function BtnDarkMode() {
-    const [darkMode, setDarkMode] = useState(false)
+    const {darkMode, setDarkMode} = useTaskContext()
     function changeMode() {
-        setDarkMode(previous => !previous)
+        setDarkMode(!darkMode)
     }
     return (
         <button className={darkMode ? "darkMode" : "lightMode"} onClick={() => changeMode()}>

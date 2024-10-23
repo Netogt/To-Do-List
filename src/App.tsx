@@ -2,17 +2,16 @@ import './css/App.css'
 import Header from './components/Header'
 import BodyList from './components/BodyList'
 import NewTask from './components/NewTask'
-import { TaskContext } from './context/TaskContext'
+import { useTaskContext } from './context/TaskContext'
 
 function App() {
+  const {darkMode} = useTaskContext()
   return (
-    <TaskContext>
-      <div className='container'>
+      <div className={darkMode ? 'dark' : 'light'}>
         <Header />
         <BodyList />
         <NewTask />
       </div>
-    </TaskContext>
   )
 }
 
