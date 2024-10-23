@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import { dataType } from "../interfaces";
 
 interface TaskContextProps {
@@ -15,25 +15,19 @@ const context = createContext({} as contextType)
 
 export function TaskContext({ children }: TaskContextProps) {
     const [data, setData] = useState({
-        unChecked: [
-            {
-                id: 1,
-                text: "tarefa",
-                checked: false
-            }
-        ],
-        checked: [
-            {
-                id: 2,
-                text: "tarefa1",
-                checked: true
-            }
-        ]
+        unChecked: [],
+        checked: []
     } as listTaskType)
-
+    function reloadTasks(){
+        const RLTask = localStorage.getItem("dataTask")
+        if(RLTask){
+            setData(JSON.parse(RLTask))
+        }
+    }
+    useEffect(()=>{reloadTasks()},[])
     function setTask(data: listTaskType): void {
         setData(data)
-        console.log(data)
+        localStorage.setItem("dataTask" ,JSON.stringify(data))
     }
     return (
         <context.Provider value={{ task: data, setTask }}>
